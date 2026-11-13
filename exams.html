@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Swinburne Sarawak • Sem 2, 2026 Final Exam Finder</title>
+  <script>
+    (function () {
+      try {
+        if (window.self !== window.top) {
+          document.documentElement.classList.add("in-iframe");
+        }
+      } catch (e) {
+        document.documentElement.classList.add("in-iframe");
+      }
+    })();
+  </script>
+  <style>
+    :root {
+      /* Swinburne Sarawak & Canvas Palette */
+      --bg: #f7f8fa;
+      --surface: #ffffff;
+      --surface-alt: #f5f5f5;
+      --text: #2d3b45;
+      --text-strong: #111827;
+      --text-muted: #556270;
+      --charcoal: #676767;
+      --border: #d8dee4;
+      --border-strong: #c7cdd1;
+
+      /* Swinburne Brand Reds */
+      --primary: #b52828;
+      --primary-dark: #941e1e;
+      --primary-vivid: #ed1c2e;
+      --primary-soft: #fdf2f2;
+      --primary-border: #eabcbc;
+
+      /* Semantic Badges */
+      --accent-blue: #1d4ed8;
+      --accent-blue-soft: #eff6ff;
+      --accent-emerald: #047857;
+      --accent-emerald-soft: #ecfdf5;
+      --accent-amber: #b45309;
+      --accent-amber-soft: #fffbeb;
+      --accent-purple: #6d28d9;
+      --accent-purple-soft: #f5f3ff;
+
+      /* Official Timetable Update Highlight */
+      --updated-bg: #dcfce7;
+      --updated-border: #86efac;
+      --updated-text: #166534;
+
+      --radius: 10px;
+      --shadow: 0 1px 4px rgba(17, 24, 39, 0.05);
+      --container-max: 1200px;
+      --nav-bottom-offset: 0px;
+    }
+
+    html.in-iframe {
+      --nav-bottom-offset: 54px;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.45;
+      padding-bottom: calc(96px + var(--nav-bottom-offset) + env(safe-area-inset-bottom));
+    }
+
+    .app-shell {
+      width: 100%;
+      min-height: 100vh;
+      background: var(--bg);
+    }
+
+    /* Sticky Top Header with Swinburne Sarawak Brand Styling */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border-strong);
+      border-top: 3px solid var(--primary);
+      padding: 12px 16px;
+      overflow: hidden;
+    }
+
+    /* Subtle Swinburne Central Geometric Hexagon Accent */
+    .header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      pointer-events: none;
+      opacity: 0.22;
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: contain;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='80' viewBox='0 0 240 80'%3E%3Cpolygon points='210,6 222,13 222,27 210,34 198,27 198,13' fill='%23b52828'/%3E%3Cpolygon points='184,21 196,28 196,42 184,49 172,42 172,28' fill='%23000000'/%3E%3Cpolygon points='210,36 222,43 222,57 210,64 198,57 198,43' fill='none' stroke='%239ca3af' stroke-width='1.5'/%3E%3Cpolygon points='158,6 170,13 170,27 158,34 146,27 146,13' fill='none' stroke='%23b52828' stroke-width='1.5'/%3E%3Cpolygon points='158,36 170,43 170,57 158,64 146,57 146,43' fill='%23d1d5db'/%3E%3Cpolygon points='132,21 144,28 144,42 132,49 120,42 120,28' fill='none' stroke='%239ca3af' stroke-width='1.2'/%3E%3C/svg%3E");
+    }
+
+    .header-inner {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      min-width: 0;
+    }
+
+    /* Official Swinburne Black Square Wordmark */
+    .swin-logo {
+      width: 42px;
+      height: 42px;
+      background: #000000;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      font-size: 9.5px;
+      line-height: 1.05;
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+      user-select: none;
+      border: 1px solid #000000;
+    }
+
+    .swin-logo span {
+      display: block;
+    }
+
+    .swin-logo .ne-row {
+      letter-spacing: 0.02em;
+      font-size: 9px;
+    }
+
+    .brand-text h1 {
+      margin: 0;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-strong);
+      letter-spacing: -0.01em;
+    }
+
+    .brand-text p {
+      margin: 1px 0 0;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .brand-campus {
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    /* Desktop/Tablet Top Nav (Hidden on mobile) */
+    .top-nav {
+      display: none;
+      align-items: center;
+      background: var(--surface-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 3px;
+      gap: 4px;
+    }
+
+    .top-nav-btn {
+      border: none;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .top-nav-btn:hover {
+      color: var(--primary);
+    }
+
+    .top-nav-btn.active {
+      background: var(--surface);
+      color: var(--primary);
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Canvas-style Right Sidebar Utility Button */
+    .notice-btn {
+      border: 1px solid var(--border-strong);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      flex-shrink: 0;
+      transition: border-color 0.15s, background 0.15s, color 0.15s;
+    }
+
+    .notice-btn:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      color: var(--primary);
+    }
+
+    /* Search Input */
+    .search-box {
+      position: relative;
+      display: flex;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      color: var(--charcoal);
+      pointer-events: none;
+      font-size: 14px;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 40px;
+      padding: 0 38px 0 36px;
+      border-radius: 8px;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      font-size: 14.5px;
+      color: var(--text-strong);
+      outline: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+      -webkit-appearance: none;
+    }
+
+    .search-input::placeholder {
+      color: #7b8794;
+    }
+
+    .search-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(181, 40, 40, 0.12);
+    }
+
+    .search-input::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+    }
+
+    .clear-btn {
+      position: absolute;
+      right: 8px;
+      width: 26px;
+      height: 26px;
+      border: none;
+      border-radius: 50%;
+      background: #e2e8f0;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      display: none;
+      place-items: center;
+    }
+
+    .clear-btn.visible {
+      display: grid;
+    }
+
+    /* Filter Chips */
+    .filters-wrapper {
+      max-width: var(--container-max);
+      margin: 0 auto;
+    }
+
+    .chip-row {
+      display: flex;
+      gap: 7px;
+      overflow-x: auto;
+      padding: 10px 16px 2px;
+      scrollbar-width: none;
+    }
+
+    .chip-row::-webkit-scrollbar {
+      display: none;
+    }
+
+    .chip {
+      flex: 0 0 auto;
+      border: 1px solid var(--border-strong);
+      background: var(--surface);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 6px 12px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .chip:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .chip.active {
+      background: #222222;
+      color: #ffffff;
+      border-color: #222222;
+    }
+
+    .chip.date-chip.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    /* Results Bar */
+    .results-meta {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px 8px;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .results-meta strong {
+      color: var(--text-strong);
+    }
+
+    .reset-link {
+      background: none;
+      border: none;
+      color: var(--primary);
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0;
+      text-decoration: underline;
+    }
+
+    .reset-link:hover {
+      color: var(--primary-dark);
+    }
+
+    /* Responsive Exam Grid */
+    .list {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 4px 16px 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    /* Canvas Boxed Panel Style */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--primary);
+      border-radius: var(--radius);
+      padding: 15px;
+      box-shadow: var(--shadow);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
+    }
+
+    .card.card-updated {
+      border-color: var(--updated-border);
+      border-left: 4px solid #16a34a;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 6px;
+    }
+
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .code-pill {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--primary);
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    .type-pill {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 3px 7px;
+      border-radius: 5px;
+    }
+
+    .type-DEGREE { background: var(--accent-blue-soft); color: var(--accent-blue); }
+    .type-DIPLOMA { background: var(--accent-purple-soft); color: var(--accent-purple); }
+    .type-FOUNDATION { background: var(--accent-amber-soft); color: var(--accent-amber); }
+    .type-PC-LAB { background: #f1f5f9; color: #334155; }
+    .type-SYNCHRONOUS, .type-ASYNCHRONOUS { background: var(--accent-emerald-soft); color: var(--accent-emerald); }
+
+    .updated-pill {
+      font-size: 10px;
+      font-weight: 700;
+      background: var(--updated-bg);
+      color: var(--updated-text);
+      padding: 3px 7px;
+      border-radius: 5px;
+    }
+
+    .save-btn {
+      border: 1px solid var(--border-strong);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .save-btn:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: var(--primary-soft);
+    }
+
+    .save-btn.saved {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #ffffff;
+    }
+
+    .unit-title {
+      margin: 4px 0 10px;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-strong);
+      line-height: 1.35;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px;
+      font-size: 12px;
+    }
+
+    @media (max-width: 359px) {
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .info-item span {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-bottom: 1px;
+    }
+
+    .info-item strong {
+      font-size: 13px;
+      color: var(--text-strong);
+    }
+
+    .venue-highlight {
+      color: var(--primary) !important;
+    }
+
+    .split-note {
+      margin-top: 8px;
+      padding: 6px 9px;
+      border-radius: 6px;
+      background: var(--accent-amber-soft);
+      border: 1px solid #fde68a;
+      color: #92400e;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .update-note {
+      margin-top: 8px;
+      padding: 7px 10px;
+      border-radius: 6px;
+      background: var(--updated-bg);
+      border: 1px solid var(--updated-border);
+      color: var(--updated-text);
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .update-note s {
+      opacity: 0.75;
+      font-weight: 500;
+    }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: 9px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 56px 20px;
+      color: var(--text-muted);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-radius: var(--radius);
+    }
+
+    .empty h3 {
+      margin: 0 0 6px;
+      color: var(--primary-vivid);
+      font-size: 17px;
+    }
+
+    .empty p {
+      max-width: 380px;
+      margin: 0 auto;
+      font-size: 13.5px;
+    }
+
+    /* Saved Tab Toolbar, Clash Banner & Inline Export Status */
+    .saved-toolbar {
+      max-width: var(--container-max);
+      margin: 0 auto;
+      padding: 12px 16px 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .saved-toolbar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      width: 100%;
+    }
+
+    .clash-banner {
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: var(--primary-soft);
+      border: 1px solid var(--primary-border);
+      border-left: 4px solid var(--primary-vivid);
+      color: #881b1b;
+      font-size: 12.5px;
+    }
+
+    .clash-banner strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--primary-vivid);
+    }
+
+    .export-btn {
+      width: 100%;
+      padding: 10px 16px;
+      border-radius: 6px;
+      border: 1px solid var(--primary);
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+
+    .export-btn:hover {
+      background: var(--primary-dark);
+      border-color: var(--primary-dark);
+    }
+
+    .export-status {
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 12.5px;
+      line-height: 1.45;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .export-status.warn {
+      background: var(--accent-amber-soft);
+      border: 1px solid #fde68a;
+      color: #92400e;
+    }
+
+    .export-status.info {
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      border-left: 4px solid var(--primary);
+      color: var(--text-strong);
+    }
+
+    .export-status a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .export-status-close {
+      background: none;
+      border: none;
+      color: inherit;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      padding: 0 2px;
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+
+    /* Mobile Bottom Navigation (with Canvas Module Footer clearance) */
+    .bottom-nav {
+      position: fixed;
+      bottom: var(--nav-bottom-offset);
+      left: 0;
+      right: 0;
+      background: var(--surface);
+      border-top: 1px solid var(--border-strong);
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.06);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 8px 16px calc(10px + env(safe-area-inset-bottom));
+      gap: 10px;
+      z-index: 35;
+    }
+
+    .nav-btn {
+      border: 1px solid transparent;
+      background: transparent;
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 9px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .nav-btn.active {
+      background: var(--primary-soft);
+      border-color: var(--primary-border);
+      color: var(--primary);
+    }
+
+    .count-badge {
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 11px;
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+
+    /* Modal / Bottom Sheet */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.55);
+      display: none;
+      align-items: flex-end;
+      justify-content: center;
+      z-index: 50;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .sheet {
+      width: 100%;
+      max-height: 85vh;
+      overflow-y: auto;
+      background: var(--surface);
+      border-top: 4px solid var(--primary);
+      border-radius: 16px 16px 0 0;
+      padding: 18px 18px calc(24px + env(safe-area-inset-bottom));
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 10px;
+      margin-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .sheet-header h2 {
+      margin: 0;
+      font-size: 18px;
+      color: var(--primary-vivid);
+    }
+
+    .close-sheet {
+      border: 1px solid var(--border-strong);
+      background: var(--surface-alt);
+      color: var(--text);
+      border-radius: 6px;
+      width: 32px;
+      height: 32px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    .sheet-section {
+      margin-bottom: 16px;
+    }
+
+    .sheet-section-title {
+      font-size: 11.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--primary);
+      margin: 0 0 8px;
+    }
+
+    .dates-box {
+      background: var(--surface-alt);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12.5px;
+    }
+
+    .dates-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dates-row:last-child {
+      border-bottom: none;
+    }
+
+    .dates-row span {
+      color: var(--text-muted);
+    }
+
+    .dates-row strong {
+      text-align: right;
+      color: var(--text-strong);
+    }
+
+    .change-card {
+      background: var(--updated-bg);
+      border: 1px solid var(--updated-border);
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 12px;
+      color: var(--updated-text);
+      margin-bottom: 8px;
+    }
+
+    .change-card strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .rule-item {
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+
+    .rule-item:last-child {
+      border-bottom: none;
+    }
+
+    .rule-item strong {
+      display: block;
+      margin-bottom: 2px;
+      color: var(--text-strong);
+    }
+
+    .portal-link-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      text-decoration: none;
+      background: var(--primary);
+      color: #ffffff;
+      font-size: 13px;
+      font-weight: 700;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-top: 8px;
+      transition: background 0.15s;
+    }
+
+    .portal-link-btn:hover {
+      background: var(--primary-dark);
+    }
+
+    .pub-meta {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Tablet & Desktop Breakpoints */
+    @media (min-width: 640px) {
+      .modal-backdrop {
+        align-items: center;
+        padding: 20px;
+      }
+
+      .sheet {
+        max-width: 580px;
+        border-radius: 12px;
+        padding: 22px 24px 26px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      }
+
+      .saved-toolbar-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .saved-toolbar-row .clash-banner {
+        flex: 1;
+      }
+
+      .export-btn {
+        width: auto;
+        flex-shrink: 0;
+      }
+    }
+
+    @media (min-width: 768px) {
+      body {
+        padding-bottom: 32px;
+      }
+
+      .bottom-nav {
+        display: none;
+      }
+
+      .top-nav {
+        display: flex;
+      }
+
+      .header {
+        padding: 14px 24px;
+      }
+
+      .brand-text h1 {
+        font-size: 17px;
+      }
+
+      .brand-text p {
+        font-size: 12px;
+      }
+
+      .chip-row {
+        flex-wrap: wrap;
+        overflow-x: visible;
+        padding: 12px 24px 2px;
+      }
+
+      .results-meta {
+        padding: 14px 24px 8px;
+      }
+
+      .saved-toolbar {
+        padding: 14px 24px 4px;
+      }
+
+      .list {
+        padding: 6px 24px 28px;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 16px rgba(17, 24, 39, 0.08);
+      }
+    }
+
+    @media (min-width: 960px) {
+      .header-inner {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+
+      .header-top {
+        display: contents;
+      }
+
+      .brand {
+        order: 1;
+      }
+
+      .search-box {
+        order: 2;
+        flex: 1;
+        max-width: 440px;
+      }
+
+      .header-actions {
+        order: 3;
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .list {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="header">
+      <div class="header-inner">
+        <div class="header-top">
+          <div class="brand">
+            <div class="swin-logo" aria-label="Swinburne University of Technology">
+              <span>SWIN</span>
+              <span>BUR</span>
+              <span class="ne-row">* NE *</span>
+            </div>
+            <div class="brand-text">
+              <h1>Final Exam Timetable Finder</h1>
+              <p><span class="brand-campus">Swinburne Sarawak</span> • Sem 2, 2026 (Sep Intake)</p>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <div class="top-nav" role="tablist" aria-label="Timetable views">
+              <button class="top-nav-btn active" id="topTabAll" type="button">All Exams</button>
+              <button class="top-nav-btn" id="topTabSaved" type="button">
+                My Timetable <span class="count-badge" id="topSavedCount">0</span>
+              </button>
+            </div>
+            <button class="notice-btn" id="openNoticesBtn" type="button">ℹ️ Info & Rules</button>
+          </div>
+        </div>
+
+        <div class="search-box">
+          <span class="search-icon">🔍</span>
+          <input
+            id="searchInput"
+            class="search-input"
+            type="search"
+            placeholder="Search unit code (e.g. ACC10007), title, or venue..."
+            autocomplete="off"
+            autocorrect="off"
+            autocapitalize="off"
+            spellcheck="false"
+          />
+          <button id="clearBtn" class="clear-btn" type="button" aria-label="Clear search">✕</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="browseControls" class="filters-wrapper">
+      <div class="chip-row" id="typeChips"></div>
+      <div class="chip-row" id="dateChips"></div>
+    </div>
+
+    <div id="myExamsExtras" class="saved-toolbar" style="display:none;">
+      <div class="saved-toolbar-row">
+        <div id="clashContainer" style="flex:1;"></div>
+        <button class="export-btn" id="exportIcsBtn" type="button">📅 Download My Exams (.ics)</button>
+      </div>
+      <div id="exportStatus" class="export-status" style="display:none;" role="status" aria-live="polite"></div>
+    </div>
+
+    <div class="results-meta">
+      <span id="resultsCount">Showing <strong>0</strong> sessions</span>
+      <button class="reset-link" id="resetFiltersBtn" type="button" style="display:none;">Reset filters</button>
+    </div>
+
+    <main class="list" id="examList"></main>
+
+    <nav class="bottom-nav" aria-label="Mobile navigation">
+      <button class="nav-btn active" id="tabAll" type="button">All Exams</button>
+      <button class="nav-btn" id="tabSaved" type="button">
+        My Timetable <span class="count-badge" id="savedCount">0</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Info & Rules Modal / Bottom Sheet -->
+  <div class="modal-backdrop" id="noticesModal">
+    <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+      <div class="sheet-header">
+        <h2 id="sheetTitle">Semester 2, 2026 Exam Guide</h2>
+        <button class="close-sheet" id="closeNoticesBtn" type="button" aria-label="Close">✕</button>
+      </div>
+
+      <div class="sheet-section">
+        <h3 class="sheet-section-title">Important Dates</h3>
+        <div class="dates-box">
+          <div class="dates-row">
+            <span>Diploma, Foundation, MCM, MA(TESOL)</span>
+            <strong>7 – 12 Dec 2026</strong>
+          </div>
+          <div class="dates-row">
+            <span>Degree Assessment Period</span>
+            <strong>7 – 19 Dec 2026</strong>
+          </div>
+          <div class="dates-row">
+            <span>Result Publication Date</span>
+            <strong>Wed, 21 Jan 2026 (Student Portal)</strong>
+          </div>
+          <div class="dates-row">
+            <span>Other Important Dates</span>
+            <strong>Refer to Academic Calendar</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <h3 class="sheet-section-title">Timetable Updates (Highlighted in Green)</h3>
+        <div class="change-card">
+          <strong>MTH10010 — Essential Mathematics</strong>
+          Moved from <s>11 Dec 2026, 2:00 PM – 5:10 PM</s> to <strong>11 Dec 2026, 9:00 AM – 12:10 PM</strong>
+        </div>
+        <div class="change-card">
+          <strong>SWE30003 — Software Architectures and Design</strong>
+          Moved from <s>11 Dec 2026, 9:00 AM – 12:10 PM</s> to <strong>11 Dec 2026, 2:00 PM – 5:10 PM</strong>
+        </div>
+      </div>
+
+      <div class="sheet-section">
+        <h3 class="sheet-section-title">Important Information & Policies</h3>
+        <div class="rule-item">
+          <strong>Face-to-Face Exam Student ID Requirement</strong>
+          You must present a CURRENT Student ID card. If lost or damaged, request a replacement from the Student Information Centre (SIC, studentHQ, Building A).
+        </div>
+        <div class="rule-item">
+          <strong>Regularly Check Canvas & Student Portal</strong>
+          Check Canvas or the Student Portal regularly for updates. The Provisional Timetable is subject to change until finalized.
+        </div>
+        <div class="rule-item">
+          <strong>Misreading the Timetable is Not Accepted</strong>
+          Requests for Special Consideration due to misreading the Final Assessment Timetable will not be entertained.
+        </div>
+        <div class="rule-item">
+          <strong>No Grade Omission Policy</strong>
+          As of the publication date of this timetable, grade omission is not permitted for both Passed and Failed grades.
+        </div>
+        <div class="rule-item">
+          <strong>Multiple Exams Within 24 Hours & Personal Changes</strong>
+          Sitting two exams within 24 hours is valid and not a clash. Changes due to personal convenience (holidays, work, flights) are not permitted.
+        </div>
+        <div class="rule-item">
+          <strong>Swinburne Local PC Access (PC Lab Exams)</strong>
+          Verify your login access to the Swinburne local PC using your university credentials before exam day, especially if you have not updated your initial password.
+        </div>
+      </div>
+
+      <a
+        class="portal-link-btn"
+        href="https://www.swinburne.edu.my/exams-results-assessment/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        🔗 Examination Conduct & Assessment Info
+      </a>
+
+      <div class="pub-meta">
+        Published 9 November 2026 • Assessment & Student Progression, Student Systems and Administration
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const RAW_EXAMS = [
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"ACC10007","name":"Financial Information for Decision Making","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":300,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"ACC10007","name":"Financial Information for Decision Making","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":92,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-07","day":"Monday","code":"DBA111","name":"Recording Financial Transactions","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":106,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"CEE30001","name":"Transport Phenomena","start":"09:00","finish":"11:55","duration":"2 Hours 45 Minutes","reading":"10 Minutes","venue":"G817","seats":14,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"QSB10002","name":"Introduction to Building Services","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":73,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-07","day":"Monday","code":"QSD113","name":"Introduction to Building Services","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":7,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-07","day":"Monday","code":"QSD124","name":"Construction Materials and Specifications","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G817","seats":3,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"EEE40005","name":"Power Electronics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G703","seats":32,"updated":false},
+      {"type":"PC LAB","date":"2026-12-07","day":"Monday","code":"BCH20001","name":"Biochemistry of Genes and Proteins","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G518","seats":32,"updated":false},
+      {"type":"PC LAB","date":"2026-12-07","day":"Monday","code":"MEE40004","name":"Fluid Mechanics 2: Machine, Supersonics and Modelling","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B509","seats":10,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-07","day":"Monday","code":"CVE20005","name":"Road Engineering","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"ONLINE","seats":49,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"TNE10006","name":"Networks and Switching","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":269,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"QSB20005","name":"Construction Technology 2","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":14,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"ACC20021","name":"Management Accounting and Business Intelligence","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":116,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"BIO10001","name":"Concepts of Biology","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":42,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-07","day":"Monday","code":"DBA332","name":"Financial Accounting III","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":38,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"MEE20006","name":"Engineering Dynamics","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":88,"updated":false},
+      {"type":"DEGREE","date":"2026-12-07","day":"Monday","code":"EEE30001","name":"Analogue Electronics 2","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"G703","seats":16,"updated":false},
+      {"type":"DEGREE","date":"2026-12-08","day":"Tuesday","code":"ECO10005","name":"Economics for Business Decision Making","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":300,"updated":false},
+      {"type":"DEGREE","date":"2026-12-08","day":"Tuesday","code":"ECO10005","name":"Economics for Business Decision Making","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":80,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-08","day":"Tuesday","code":"QSD224","name":"Principle of Management","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G817","seats":7,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-08","day":"Tuesday","code":"QSD225","name":"Construction Economics 2","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G817","seats":5,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-08","day":"Tuesday","code":"DBA132","name":"Financial Accounting I","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":61,"updated":false},
+      {"type":"DEGREE","date":"2026-12-08","day":"Tuesday","code":"FIN20016","name":"Ethics and International Finance","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":132,"updated":false},
+      {"type":"PC LAB","date":"2026-12-08","day":"Tuesday","code":"CSS205","name":"Networks and Switching","start":"09:00","finish":"10:10","duration":"1 Hour","reading":"10 Minutes","venue":"A308","seats":21,"updated":false},
+      {"type":"PC LAB","date":"2026-12-08","day":"Tuesday","code":"CSS205","name":"Networks and Switching","start":"09:00","finish":"10:10","duration":"1 Hour","reading":"10 Minutes","venue":"A312","seats":20,"updated":false},
+      {"type":"PC LAB","date":"2026-12-08","day":"Tuesday","code":"EEE40007","name":"Power System Operation and Control","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B507","seats":16,"updated":false},
+      {"type":"PC LAB","date":"2026-12-08","day":"Tuesday","code":"EEE40007","name":"Power System Operation and Control","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B509","seats":16,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-08","day":"Tuesday","code":"RME30003","name":"Robotic Control","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"ONLINE","seats":16,"updated":false},
+      {"type":"FOUNDATION","date":"2026-12-08","day":"Tuesday","code":"FSB10030","name":"Accounting","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":300,"updated":false},
+      {"type":"FOUNDATION","date":"2026-12-08","day":"Tuesday","code":"FSB10030","name":"Accounting","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":148,"updated":false},
+      {"type":"DEGREE","date":"2026-12-08","day":"Tuesday","code":"BIO30005","name":"Microbes in the Environment","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":28,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-08","day":"Tuesday","code":"DBA231","name":"Fundamentals of Management Accounting","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":15,"updated":false},
+      {"type":"DEGREE","date":"2026-12-08","day":"Tuesday","code":"COS30008","name":"Data Structures and Patterns","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":88,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"FIN10002","name":"Financial Statistics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":300,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"FIN10002","name":"Financial Statistics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":142,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"QSB11001","name":"Engineering Survey","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":24,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"QSB40016","name":"Contract Administration","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":6,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-09","day":"Wednesday","code":"QSD114","name":"Engineering Land Surveying","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":3,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"ACC30012","name":"Accounting, Society and Sustainability","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":48,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-09","day":"Wednesday","code":"DBA334","name":"Introduction to Taxation","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":36,"updated":false},
+      {"type":"ASYNCHRONOUS","date":"2026-12-09","day":"Wednesday","code":"COS10003","name":"Computer and Logic Essentials","start":"09:00","finish":"13:00","duration":"4 Hours","reading":"None","venue":"ONLINE","seats":159,"updated":false},
+      {"type":"PC LAB","date":"2026-12-09","day":"Wednesday","code":"COS30019","name":"Introduction to Artificial Intelligence","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"A203","seats":28,"updated":false},
+      {"type":"PC LAB","date":"2026-12-09","day":"Wednesday","code":"COS30019","name":"Introduction to Artificial Intelligence","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"A303","seats":28,"updated":false},
+      {"type":"PC LAB","date":"2026-12-09","day":"Wednesday","code":"COS30019","name":"Introduction to Artificial Intelligence","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"A308","seats":28,"updated":false},
+      {"type":"PC LAB","date":"2026-12-09","day":"Wednesday","code":"COS30019","name":"Introduction to Artificial Intelligence","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"A312","seats":27,"updated":false},
+      {"type":"PC LAB","date":"2026-12-09","day":"Wednesday","code":"COS30019","name":"Introduction to Artificial Intelligence","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B219","seats":27,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-09","day":"Wednesday","code":"BIO10003","name":"Concepts of Biotechnology","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"ONLINE","seats":52,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-09","day":"Wednesday","code":"DBE211","name":"Economics","start":"09:00","finish":"12:00","duration":"3 Hours","reading":"None","venue":"ONLINE","seats":120,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-09","day":"Wednesday","code":"DBE221","name":"Principles of Economics","start":"09:00","finish":"12:00","duration":"3 Hours","reading":"None","venue":"ONLINE","seats":49,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"ENG10002","name":"Engineering Materials","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":300,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"ENG10002","name":"Engineering Materials","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":39,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"BIO30004","name":"Molecular Biotechnology","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":18,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"LAW20019","name":"Law of Commerce","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":67,"updated":false},
+      {"type":"DEGREE","date":"2026-12-09","day":"Wednesday","code":"MEE20005","name":"Materials Processing and Machining","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":89,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"FIN20014","name":"Financial Management","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":202,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"QSB10015","name":"Construction Technology 1","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":73,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-10","day":"Thursday","code":"QSD112","name":"Construction Technology 1","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":7,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-10","day":"Thursday","code":"QSD221","name":"Civil Engineering Works Measurement","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":5,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"CHE10001","name":"Chemistry 1","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":43,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"CHE10005","name":"Consumer Chemistry and Environmental Impact","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":29,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"EEE20005","name":"Electrical Machines","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":73,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"QSB20003","name":"Cost Planning and Control","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":23,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"QSB20015","name":"Construction Technology 3","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":13,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"QSB40004","name":"Construction Measurement 5","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":16,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"CEE30005","name":"Multiphase Processes","start":"09:00","finish":"11:40","duration":"2 Hours 30 Minutes","reading":"10 Minutes","venue":"G817","seats":15,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"COS10004","name":"Computer Systems","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":83,"updated":false},
+      {"type":"PC LAB","date":"2026-12-10","day":"Thursday","code":"TNE10005","name":"Network Administration - Group 1","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B509","seats":24,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"MTH10012","name":"Calculus and Applications","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":267,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"CEE20003","name":"Fluid Mechanics C","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":41,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"MEE20003","name":"Fluid Mechanics 1: Forces and Energy","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":136,"updated":false},
+      {"type":"DEGREE","date":"2026-12-10","day":"Thursday","code":"FIN30014","name":"Financial Risk Management","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":91,"updated":false},
+      {"type":"PC LAB","date":"2026-12-10","day":"Thursday","code":"TNE10005","name":"Network Administration - Group 2","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B509","seats":24,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"ACC10008","name":"Financial Information Systems","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":225,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-11","day":"Friday","code":"DBA335","name":"Introduction to Auditing","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":35,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"QSB20004","name":"Construction Measurement 2","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":13,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"QSB20014","name":"Construction Measurement 3","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":11,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"MTH20017","name":"Mathematical Methods and Statistics for Engineering","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":126,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"MTH10010","name":"Essential Mathematics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":68,"updated":true,"prevTime":"14:00 – 17:10"},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"QSB10014","name":"Construction Measurement 1","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":76,"updated":false},
+      {"type":"DIPLOMA","date":"2026-12-11","day":"Friday","code":"QSD111","name":"Measurement Project 1","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"G817","seats":8,"updated":false},
+      {"type":"PC LAB","date":"2026-12-11","day":"Friday","code":"BIO20008","name":"Introduction to Tropical Ecology","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G518","seats":34,"updated":false},
+      {"type":"PC LAB","date":"2026-12-11","day":"Friday","code":"EEE40017","name":"Machine Vision","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B507","seats":8,"updated":false},
+      {"type":"PC LAB","date":"2026-12-11","day":"Friday","code":"TNE10005","name":"Network Administration - Group 3","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B509","seats":24,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"CEE20002","name":"Chemical Engineering Thermodynamics","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":41,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"MTH10013","name":"Linear Algebra and Applications","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":240,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"ACC30009","name":"Analysis for Competitive Advantage","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":65,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"CEE30003","name":"Process Mass Transfer","start":"14:00","finish":"16:10","duration":"2 Hours","reading":"10 Minutes","venue":"B004-B006","seats":14,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"MEE30004","name":"Solid Mechanics","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":30,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"QSB40005","name":"Construction Technology 4","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":20,"updated":false},
+      {"type":"DEGREE","date":"2026-12-11","day":"Friday","code":"SWE30003","name":"Software Architectures and Design","start":"14:00","finish":"17:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":67,"updated":true,"prevTime":"09:00 – 12:10"},
+      {"type":"DEGREE","date":"2026-12-14","day":"Monday","code":"ENG10003","name":"Engineering Mechanics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":286,"updated":false},
+      {"type":"DEGREE","date":"2026-12-14","day":"Monday","code":"ACC20013","name":"Company Accounting","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":103,"updated":false},
+      {"type":"DEGREE","date":"2026-12-14","day":"Monday","code":"CVE30005","name":"Cost Engineering Project","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":42,"updated":false},
+      {"type":"DEGREE","date":"2026-12-14","day":"Monday","code":"MEE40001","name":"Heat Transfer","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":31,"updated":false},
+      {"type":"DEGREE","date":"2026-12-14","day":"Monday","code":"QSB10001","name":"Introduction to Construction Management","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"G817","seats":81,"updated":false},
+      {"type":"SYNCHRONOUS","date":"2026-12-14","day":"Monday","code":"FIN30021","name":"Fixed Income and Debt Markets","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"ONLINE","seats":90,"updated":false},
+      {"type":"PC LAB","date":"2026-12-14","day":"Monday","code":"PEH20006","name":"Water Science","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"B509","seats":22,"updated":false},
+      {"type":"DEGREE","date":"2026-12-15","day":"Tuesday","code":"MME30002","name":"Engineering Management Project","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":102,"updated":false},
+      {"type":"DEGREE","date":"2026-12-15","day":"Tuesday","code":"PHY10001","name":"Energy and Motion","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":191,"updated":false},
+      {"type":"DEGREE","date":"2026-12-15","day":"Tuesday","code":"ACC30010","name":"Auditing","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"B004-B006","seats":67,"updated":false},
+      {"type":"DEGREE","date":"2026-12-16","day":"Wednesday","code":"ACC30005","name":"Taxation","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":62,"updated":false},
+      {"type":"DEGREE","date":"2026-12-16","day":"Wednesday","code":"CVE20004","name":"Geomechanics","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":33,"updated":false},
+      {"type":"DEGREE","date":"2026-12-16","day":"Wednesday","code":"PEH20004","name":"Built and Sustainable Communities","start":"09:00","finish":"12:10","duration":"3 Hours","reading":"10 Minutes","venue":"MPH","seats":95,"updated":false},
+      {"type":"DEGREE","date":"2026-12-16","day":"Wednesday","code":"QSB20016","name":"Advanced Construction Law and Contracts","start":"09:00","finish":"11:10","duration":"2 Hours","reading":"10 Minutes","venue":"MPH","seats":29,"updated":false}
+    ];
+
+    const EXAMS = RAW_EXAMS.map((item, idx) => ({
+      ...item,
+      id: `${item.code}-${item.date}-${item.start}-${item.venue}-${idx}`
+    }));
+
+    const STORAGE_KEY = "sem2_2026_saved_exams";
+
+    function loadSavedIds() {
+      try {
+        const raw = window.localStorage.getItem(STORAGE_KEY);
+        const parsed = raw ? JSON.parse(raw) : [];
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function persistSavedIds(ids) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, JSON.stringify(ids));
+      } catch (e) {
+        // Fallback to in-memory state when localStorage is unavailable
+      }
+    }
+
+    const codeCounts = EXAMS.reduce((acc, e) => {
+      acc[e.code] = (acc[e.code] || 0) + 1;
+      return acc;
+    }, {});
+
+    const state = {
+      tab: "all",
+      query: "",
+      type: "ALL",
+      date: "ALL",
+      saved: loadSavedIds()
+    };
+
+    const searchInput = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+    const typeChipsEl = document.getElementById("typeChips");
+    const dateChipsEl = document.getElementById("dateChips");
+    const examListEl = document.getElementById("examList");
+    const resultsCountEl = document.getElementById("resultsCount");
+    const resetFiltersBtn = document.getElementById("resetFiltersBtn");
+    const savedCountEl = document.getElementById("savedCount");
+    const topSavedCountEl = document.getElementById("topSavedCount");
+    const tabAllBtn = document.getElementById("tabAll");
+    const tabSavedBtn = document.getElementById("tabSaved");
+    const topTabAllBtn = document.getElementById("topTabAll");
+    const topTabSavedBtn = document.getElementById("topTabSaved");
+    const browseControlsEl = document.getElementById("browseControls");
+    const myExamsExtrasEl = document.getElementById("myExamsExtras");
+    const clashContainerEl = document.getElementById("clashContainer");
+    const exportStatusEl = document.getElementById("exportStatus");
+
+    const TYPES = [
+      { key: "ALL", label: "All Types" },
+      { key: "DEGREE", label: "Degree" },
+      { key: "DIPLOMA", label: "Diploma" },
+      { key: "FOUNDATION", label: "Foundation" },
+      { key: "PC LAB", label: "PC Lab" },
+      { key: "ONLINE", label: "Online" }
+    ];
+
+    const DATES = [
+      { key: "ALL", label: "All Dates" },
+      { key: "2026-12-07", label: "Mon 7 Dec" },
+      { key: "2026-12-08", label: "Tue 8 Dec" },
+      { key: "2026-12-09", label: "Wed 9 Dec" },
+      { key: "2026-12-10", label: "Thu 10 Dec" },
+      { key: "2026-12-11", label: "Fri 11 Dec" },
+      { key: "2026-12-14", label: "Mon 14 Dec" },
+      { key: "2026-12-15", label: "Tue 15 Dec" },
+      { key: "2026-12-16", label: "Wed 16 Dec" }
+    ];
+
+    function showExportStatus(variant, htmlContent) {
+      exportStatusEl.className = `export-status ${variant}`;
+      exportStatusEl.innerHTML = `
+        <div>${htmlContent}</div>
+        <button type="button" class="export-status-close" aria-label="Dismiss notice">✕</button>
+      `;
+      exportStatusEl.style.display = "flex";
+    }
+
+    function hideExportStatus() {
+      exportStatusEl.style.display = "none";
+      exportStatusEl.innerHTML = "";
+    }
+
+    exportStatusEl.addEventListener("click", e => {
+      if (e.target.closest(".export-status-close")) {
+        hideExportStatus();
+      }
+    });
+
+    function formatDisplayDate(iso, day) {
+      const parts = iso.split("-");
+      return `${day}, ${parseInt(parts[2], 10)} Dec ${parts[0]}`;
+    }
+
+    function renderChips() {
+      typeChipsEl.innerHTML = TYPES.map(t => `
+        <button type="button" class="chip ${state.type === t.key ? "active" : ""}" data-type="${t.key}">
+          ${t.label}
+        </button>
+      `).join("");
+
+      dateChipsEl.innerHTML = DATES.map(d => `
+        <button type="button" class="chip date-chip ${state.date === d.key ? "active" : ""}" data-date="${d.key}">
+          ${d.label}
+        </button>
+      `).join("");
+    }
+
+    function getFilteredExams() {
+      const q = state.query.trim().toLowerCase();
+      return EXAMS.filter(e => {
+        if (state.tab === "saved" && !state.saved.includes(e.id)) return false;
+
+        if (state.tab === "all") {
+          if (state.type !== "ALL") {
+            if (state.type === "ONLINE") {
+              if (e.type !== "SYNCHRONOUS" && e.type !== "ASYNCHRONOUS") return false;
+            } else if (e.type !== state.type) {
+              return false;
+            }
+          }
+          if (state.date !== "ALL" && e.date !== state.date) return false;
+        }
+
+        if (q) {
+          const hay = `${e.code} ${e.name} ${e.venue}`.toLowerCase();
+          return q.split(/\s+/).every(token => hay.includes(token));
+        }
+        return true;
+      });
+    }
+
+    function checkClashes(savedList) {
+      if (savedList.length < 2) return [];
+      const warnings = [];
+      const sorted = [...savedList].sort((a, b) => `${a.date}T${a.start}`.localeCompare(`${b.date}T${b.start}`));
+
+      for (let i = 0; i < sorted.length - 1; i++) {
+        const curr = sorted[i];
+        const next = sorted[i + 1];
+        const currStart = new Date(`${curr.date}T${curr.start}:00`);
+        const currEnd = new Date(`${curr.date}T${curr.finish}:00`);
+        const nextStart = new Date(`${next.date}T${next.start}:00`);
+        const hoursDiff = (nextStart - currStart) / (1000 * 60 * 60);
+
+        if (nextStart < currEnd) {
+          warnings.push(`Direct time clash between ${curr.code} and ${next.code} on ${formatDisplayDate(curr.date, curr.day)}.`);
+        } else if (hoursDiff <= 24) {
+          warnings.push(`${curr.code} and ${next.code} are within 24 hours (${Math.round(hoursDiff)}h apart). Note: Swinburne permits two exams within 24h.`);
+        }
+      }
+      return warnings;
+    }
+
+    function setTab(tabName) {
+      state.tab = tabName;
+      hideExportStatus();
+      const isAll = tabName === "all";
+      tabAllBtn.classList.toggle("active", isAll);
+      topTabAllBtn.classList.toggle("active", isAll);
+      tabSavedBtn.classList.toggle("active", !isAll);
+      topTabSavedBtn.classList.toggle("active", !isAll);
+      render();
+    }
+
+    function render() {
+      const count = state.saved.length;
+      savedCountEl.textContent = count;
+      topSavedCountEl.textContent = count;
+      clearBtn.classList.toggle("visible", state.query.length > 0);
+
+      const hasFilters = state.query.trim() !== "" || state.type !== "ALL" || state.date !== "ALL";
+      resetFiltersBtn.style.display = state.tab === "all" && hasFilters ? "inline" : "none";
+
+      browseControlsEl.style.display = state.tab === "all" ? "block" : "none";
+      myExamsExtrasEl.style.display = state.tab === "saved" ? "flex" : "none";
+
+      const items = getFilteredExams();
+      resultsCountEl.innerHTML = `Showing <strong>${items.length}</strong> ${items.length === 1 ? "session" : "sessions"}`;
+
+      if (state.tab === "saved") {
+        const warnings = checkClashes(items);
+        clashContainerEl.innerHTML = warnings.length
+          ? `<div class="clash-banner"><strong>Schedule Notice</strong>${warnings.join("<br>")}</div>`
+          : "";
+      }
+
+      if (items.length === 0) {
+        examListEl.innerHTML = `
+          <div class="empty">
+            <h3>${state.tab === "saved" ? "No saved exams yet" : "No matching exams found"}</h3>
+            <p>${state.tab === "saved"
+              ? "Search for your unit codes and tap “+ Save” to build your personal exam timetable."
+              : "Try searching by unit code (e.g., COS30019), subject keyword, or reset active filters."}</p>
+          </div>
+        `;
+        return;
+      }
+
+      examListEl.innerHTML = items.map(e => {
+        const isSaved = state.saved.includes(e.id);
+        const multiCount = codeCounts[e.code] || 1;
+        const typeClass = `type-${e.type.replace(/\s+/g, "-")}`;
+        const splitText = multiCount > 1
+          ? (e.code === "TNE10005"
+              ? "Multiple lab sessions (Groups 1–3) — verify your assigned group."
+              : `Split across ${multiCount} venues/rooms — check your seat allocation on Canvas.`)
+          : "";
+
+        const updateHtml = e.updated && e.prevTime
+          ? `<div class="update-note">Updated time: <s>${e.prevTime}</s> → ${e.start} – ${e.finish}</div>`
+          : "";
+
+        return `
+          <article class="card ${e.updated ? "card-updated" : ""}">
+            <div class="card-top">
+              <div class="badges">
+                <span class="code-pill">${e.code}</span>
+                <span class="type-pill ${typeClass}">${e.type}</span>
+                ${e.updated ? `<span class="updated-pill">UPDATED</span>` : ""}
+              </div>
+              <button type="button" class="save-btn ${isSaved ? "saved" : ""}" data-save-id="${e.id}">
+                ${isSaved ? "✓ Saved" : "+ Save"}
+              </button>
+            </div>
+            <h2 class="unit-title">${e.name}</h2>
+            <div class="info-grid">
+              <div class="info-item">
+                <span>Date</span>
+                <strong>${formatDisplayDate(e.date, e.day)}</strong>
+              </div>
+              <div class="info-item">
+                <span>Venue</span>
+                <strong class="venue-highlight">${e.venue}</strong>
+              </div>
+              <div class="info-item">
+                <span>Time</span>
+                <strong>${e.start} – ${e.finish}</strong>
+              </div>
+              <div class="info-item">
+                <span>Duration & Reading</span>
+                <strong>${e.duration} (${e.reading === "None" ? "No reading" : e.reading + " read"})</strong>
+              </div>
+            </div>
+            ${updateHtml}
+            ${splitText ? `<div class="split-note">ℹ️ ${splitText}</div>` : ""}
+            <div class="card-footer">
+              <span>Capacity: ${e.seats} seats</span>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function handleSearchChange() {
+      state.query = searchInput.value;
+      render();
+    }
+
+    searchInput.addEventListener("input", handleSearchChange);
+    searchInput.addEventListener("search", handleSearchChange);
+    searchInput.addEventListener("keyup", handleSearchChange);
+
+    clearBtn.addEventListener("click", () => {
+      state.query = "";
+      searchInput.value = "";
+      searchInput.focus();
+      render();
+    });
+
+    typeChipsEl.addEventListener("click", e => {
+      const btn = e.target.closest("[data-type]");
+      if (!btn) return;
+      state.type = btn.dataset.type;
+      renderChips();
+      render();
+    });
+
+    dateChipsEl.addEventListener("click", e => {
+      const btn = e.target.closest("[data-date]");
+      if (!btn) return;
+      state.date = btn.dataset.date;
+      renderChips();
+      render();
+    });
+
+    resetFiltersBtn.addEventListener("click", () => {
+      state.query = "";
+      state.type = "ALL";
+      state.date = "ALL";
+      searchInput.value = "";
+      renderChips();
+      render();
+    });
+
+    examListEl.addEventListener("click", e => {
+      const btn = e.target.closest("[data-save-id]");
+      if (!btn) return;
+      const id = btn.dataset.saveId;
+      if (state.saved.includes(id)) {
+        state.saved = state.saved.filter(x => x !== id);
+      } else {
+        state.saved.push(id);
+      }
+      persistSavedIds(state.saved);
+      hideExportStatus();
+      render();
+    });
+
+    tabAllBtn.addEventListener("click", () => setTab("all"));
+    topTabAllBtn.addEventListener("click", () => setTab("all"));
+    tabSavedBtn.addEventListener("click", () => setTab("saved"));
+    topTabSavedBtn.addEventListener("click", () => setTab("saved"));
+
+    const modal = document.getElementById("noticesModal");
+    document.getElementById("openNoticesBtn").addEventListener("click", () => modal.classList.add("open"));
+    document.getElementById("closeNoticesBtn").addEventListener("click", () => modal.classList.remove("open"));
+    modal.addEventListener("click", e => {
+      if (e.target === modal) modal.classList.remove("open");
+    });
+
+    document.getElementById("exportIcsBtn").addEventListener("click", () => {
+      const savedExams = EXAMS.filter(e => state.saved.includes(e.id));
+      if (!savedExams.length) {
+        showExportStatus("warn", "Save at least one exam first using <strong>+ Save</strong> to export your calendar.");
+        return;
+      }
+
+      const lines = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//Swinburne Sarawak Exam Timetable Finder//Sem 2 2026//EN"
+      ];
+      savedExams.forEach(e => {
+        const dt = e.date.replace(/-/g, "");
+        const st = e.start.replace(":", "") + "00";
+        const en = e.finish.replace(":", "") + "00";
+        lines.push(
+          "BEGIN:VEVENT",
+          `UID:${e.id}@swinburne-sarawak-examfinder`,
+          `DTSTAMP:20261109T000000Z`,
+          `DTSTART:${dt}T${st}`,
+          `DTEND:${dt}T${en}`,
+          `SUMMARY:${e.code} - ${e.name}`,
+          `LOCATION:${e.venue}`,
+          `DESCRIPTION:Type: ${e.type} | Duration: ${e.duration} | Reading: ${e.reading}`,
+          "END:VEVENT"
+        );
+      });
+      lines.push("END:VCALENDAR");
+
+      const icsContent = lines.join("\r\n");
+      const filename = "Swinburne_Sarawak_Sem2_2026_My_Exams.ics";
+      const dataUri = `data:text/calendar;charset=utf-8,${encodeURIComponent(icsContent)}`;
+
+      let triggered = false;
+      try {
+        const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+        const blobUrl = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = blobUrl;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        setTimeout(() => URL.revokeObjectURL(blobUrl), 10000);
+        triggered = true;
+      } catch (err) {
+        // Fallback to data URI below
+      }
+
+      if (!triggered) {
+        try {
+          const fallbackLink = document.createElement("a");
+          fallbackLink.href = dataUri;
+          fallbackLink.download = filename;
+          document.body.appendChild(fallbackLink);
+          fallbackLink.click();
+          document.body.removeChild(fallbackLink);
+        } catch (err2) {
+          // Handled via visible inline fallback link below
+        }
+      }
+
+      showExportStatus(
+        "info",
+        `Calendar file prepared (${savedExams.length} ${savedExams.length === 1 ? "exam" : "exams"}). ` +
+        `<a href="${dataUri}" download="${filename}">Tap here to download directly</a> if it did not start automatically. ` +
+        `<em>Using the Canvas mobile app? Tap <strong>Open in Browser</strong> at the top right if downloads are blocked.</em>`
+      );
+    });
+
+    renderChips();
+    render();
+  </script>
+</body>
+</html>
